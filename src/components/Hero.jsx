@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Download, Mail, Terminal, Cpu, Database, Code } from 'lucide-react';
 import { Github, LinkedIn as Linkedin } from './BrandIcons';
-import resumePdf from '../assets/resume.pdf';
+import resumePdf from '../assets/Faheem_Nazir_Resume.pdf';
 
 const Hero = () => {
   const [text, setText] = useState('');
