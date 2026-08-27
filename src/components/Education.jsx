@@ -1,4 +1,3 @@
-import React from 'react';
 import { Calendar, MapPin, Award, BookOpen } from 'lucide-react';
 
 const Education = () => {
@@ -6,40 +5,60 @@ const Education = () => {
     {
       date: '2023 – 2027',
       status: 'Current (6th Semester)',
+      scoreBadge: 'CGPA: 7.6 / 10',
       title: 'Bachelor of Technology (B.Tech)',
       subtitle: 'Computer Science Engineering',
       institution: 'Kolhapur Institute of Technology',
       location: 'Kolhapur, Maharashtra, India',
-      desc: 'Building a strong foundation in computer science engineering principles, coding architectures, software systems design, and database normalization. Actively participating in technical committees and developing hands-on development projects.',
+      desc: 'Building an intensive foundation in computer science engineering principles, algorithm design, machine learning pipelines, and software systems architecture. Actively developing practical projects in applied AI and full-stack web platforms.',
       highlights: [
-        'Software Engineering',
         'Data Structures & Algorithms',
-        'Database Systems',
-        'Web Technologies',
-        'Full-Stack Development'
-      ]
+        'Machine Learning & AI',
+        'Database Systems (DBMS)',
+        'Full-Stack Web Technologies',
+        'Operating Systems & Networks',
+        'System Design & Software Engineering',
+      ],
     },
     {
-      date: 'Passed in 2023',
+      date: 'Completed 2023',
       status: 'Completed',
+      scoreBadge: 'Score: 83%',
       title: 'Higher Secondary Education (Class 12)',
-      subtitle: 'Shah Rasool Memorial Welkin Higher Secondary School',
-      institution: 'Sopore, Jammu & Kashmir, India',
-      desc: 'Completed higher secondary education with a strong academic standing, specializing in scientific coursework, logic structures, mathematics, and computing fundamentals.',
+      subtitle: 'Science & Computing Coursework',
+      institution: 'Shah Rasool Memorial Welkin Higher Secondary School',
+      location: 'Sopore, Jammu & Kashmir, India',
+      desc: 'Completed senior secondary education with strong analytical coursework across mathematics, computational theory, physics, and logical reasoning.',
       highlights: [
-        'Mathematics',
+        'Advanced Mathematics',
         'Physics & Chemistry',
         'Computer Fundamentals',
-        'Logic & Problem Solving'
-      ]
-    }
+        'Logic & Analytical Problem Solving',
+      ],
+    },
+    {
+      date: 'Completed 2021',
+      status: 'Completed',
+      scoreBadge: 'Score: 98%',
+      title: 'Secondary School Education (Class 10)',
+      subtitle: 'High School General Sciences & Math',
+      institution: 'Shah Rasool Memorial Welkin Higher Secondary School',
+      location: 'Sopore, Jammu & Kashmir, India',
+      desc: 'Graduated secondary school with top-tier academic honors (98%), excelling in mathematics, natural sciences, and computer literacy.',
+      highlights: [
+        'Mathematics & Geometry',
+        'General Science & Logic',
+        'Computer Science Basics',
+        'Academic Honor Roll (98%)',
+      ],
+    },
   ];
 
   return (
     <section id="education" className="education-section">
       <div className="bg-glow-blob cyan" style={{ top: '20%', right: '10%' }}></div>
 
-      <div className="section-header">
+      <div className="section-header reveal-on-scroll">
         <span className="section-subtitle">Academic Journey</span>
         <h2 className="section-title">Education</h2>
       </div>
@@ -50,21 +69,29 @@ const Education = () => {
 
         {/* Timeline Items */}
         {educationList.map((edu, idx) => (
-          <div key={idx} className="timeline-item">
+          <div
+            key={idx}
+            className={`timeline-item reveal-on-scroll delay-${(idx + 1) * 100}`}
+          >
             <div className="timeline-dot"></div>
             <div className="timeline-content glass-card">
               <div className="timeline-header">
                 <span className="timeline-date">
                   <Calendar size={14} /> {edu.date}
                 </span>
-                <span className={`timeline-status-badge ${edu.status === 'Completed' ? 'completed' : ''}`}>
-                  {edu.status}
-                </span>
+                <div className="timeline-badge-group">
+                  <span className="timeline-score-badge">{edu.scoreBadge}</span>
+                  <span
+                    className={`timeline-status-badge ${edu.status === 'Completed' ? 'completed' : ''}`}
+                  >
+                    {edu.status}
+                  </span>
+                </div>
               </div>
-              
+
               <h3 className="timeline-title">{edu.title}</h3>
               <h4 className="timeline-subtitle">{edu.subtitle}</h4>
-              
+
               <div className="timeline-meta">
                 <span className="timeline-institution">
                   <BookOpen size={16} /> {edu.institution}
@@ -77,7 +104,7 @@ const Education = () => {
               <p className="timeline-desc">{edu.desc}</p>
 
               <div className="course-highlights">
-                <h5>Key Highlights:</h5>
+                <h5>Key Academic Focus:</h5>
                 <div className="course-tags">
                   {edu.highlights.map((highlight, hIdx) => (
                     <span key={hIdx} className="course-tag">

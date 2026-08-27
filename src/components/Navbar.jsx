@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+
+const NAV_LINKS = [
+  { name: 'Home', id: 'home' },
+  { name: 'About', id: 'about' },
+  { name: 'Projects', id: 'projects' },
+  { name: 'Skills', id: 'skills' },
+  { name: 'Education', id: 'education' },
+  { name: 'Achievements', id: 'achievements' },
+  { name: 'Experience', id: 'experience' },
+  { name: 'Services', id: 'services' },
+  { name: 'Contact', id: 'contact' },
+];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-
-  const navLinks = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'Skills', id: 'skills' },
-    { name: 'Education', id: 'education' },
-    { name: 'Services', id: 'services' },
-    { name: 'Contact', id: 'contact' },
-  ];
 
   // Scroll listener for glass effect and active section tracking
   useEffect(() => {
@@ -22,13 +24,13 @@ const Navbar = () => {
       setScrolled(window.scrollY > 20);
 
       // Identify which section is currently on screen
-      const sections = navLinks.map(link => document.getElementById(link.id));
+      const sections = NAV_LINKS.map((link) => document.getElementById(link.id));
       const scrollPosition = window.scrollY + 120; // offset for nav height
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section && scrollPosition >= section.offsetTop) {
-          setActiveSection(navLinks[i].id);
+          setActiveSection(NAV_LINKS[i].id);
           break;
         }
       }
@@ -50,7 +52,7 @@ const Navbar = () => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -59,13 +61,20 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         {/* Logo */}
-        <a href="#home" className="navbar-logo" onClick={(e) => { e.preventDefault(); handleLinkClick('home'); }}>
+        <a
+          href="#home"
+          className="navbar-logo"
+          onClick={(e) => {
+            e.preventDefault();
+            handleLinkClick('home');
+          }}
+        >
           Faheem<span>Nazir</span>
         </a>
 
         {/* Desktop Links */}
         <ul className="navbar-links">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
@@ -83,8 +92,8 @@ const Navbar = () => {
 
         {/* CTA Button */}
         <div className="navbar-cta-wrapper">
-          <button 
-            className="navbar-cta-btn" 
+          <button
+            className="navbar-cta-btn"
             onClick={() => handleLinkClick('contact')}
           >
             Get in touch <ArrowUpRight size={16} className="cta-icon" />
@@ -104,7 +113,7 @@ const Navbar = () => {
       {/* Mobile Drawer Menu */}
       <div className={`navbar-mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
         <ul>
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
@@ -119,8 +128,8 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-            <button 
-              className="navbar-cta-btn mobile-cta" 
+            <button
+              className="navbar-cta-btn mobile-cta"
               onClick={() => handleLinkClick('contact')}
             >
               Get in touch <ArrowUpRight size={16} />

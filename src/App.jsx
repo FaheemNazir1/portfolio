@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Education from './components/Education';
-import Skills from './components/Skills';
-import Services from './components/Services';
 import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Education from './components/Education';
+import Achievements from './components/Achievements';
 import Experience from './components/Experience';
+import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
+import { useScrollReveal } from './hooks/useScrollReveal';
 import './App.css';
 
 function App() {
   const [loading, setLoading] = useState(true);
 
+  // Initialize scroll-reveal when loading completes
+  useScrollReveal(loading);
+
   useEffect(() => {
-    // Simulate loading page resources
+    // Simulated loading animation
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {/* Loading Screen */}
+      {/* Loading Screen Overlay */}
       <div className={`loading-screen ${!loading ? 'fade-out' : ''}`}>
         <div className="loader-box">
           <div className="loader-spinner">
@@ -40,26 +45,25 @@ function App() {
       </div>
 
       {/* Main Website Structure */}
-      {!loading && (
-        <div className="app-wrapper">
-          {/* Particle network under the cards */}
-          <ParticleBackground />
+      <div className="app-wrapper">
+        {/* Particle network under the cards */}
+        <ParticleBackground />
 
-          {/* Core Content Layer */}
-          <Navbar />
-          <main className="main-content-flow">
-            <Hero />
-            <About />
-            <Projects />
-            <Skills />
-            <Education />
-            <Services />
-            <Experience />
-            <Contact />
-          </main>
-          <Footer />
-        </div>
-      )}
+        {/* Core Content Layer */}
+        <Navbar />
+        <main className="main-content-flow">
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Education />
+          <Achievements />
+          <Experience />
+          <Services />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
