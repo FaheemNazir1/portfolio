@@ -17,7 +17,7 @@ const Experience = () => {
     {
       icon: <Trophy size={20} color="#3B82F6" />,
       title: 'Algorithmic Problem Solving & DSA',
-      desc: 'Solved 200+ Data Structures & Algorithms problems across competitive programming platforms. Consistently practicing arrays, graphs, trees, search optimization, and dynamic programming.',
+      desc: 'Solved 350+ Data Structures & Algorithms problems across competitive programming platforms. Consistently practicing arrays, graphs, trees, search optimization, and dynamic programming.',
     },
     {
       icon: <Zap size={20} color="#10B981" />,
@@ -59,7 +59,7 @@ const Experience = () => {
               <ul className="goals-list">
                 <li>Applied Machine Learning & NLP</li>
                 <li>Full-Stack Web Architecture (React, Node, Express, MongoDB)</li>
-                <li>Data Structures & Algorithms (200+ Problems)</li>
+                <li>Data Structures & Algorithms (350+ Problems)</li>
                 <li>Computer Vision & Feature Engineering</li>
                 <li>Secure RESTful API Development & JWT Auth</li>
               </ul>

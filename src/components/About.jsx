@@ -6,7 +6,7 @@ const INTERESTS = ['♟️ Chess', '📚 Reading', '🎬 Cinema', '🧩 Problem 
 const About = () => {
   const stats = [
     { icon: <Award size={22} color="#22d3ee" />, to: 6, suffix: '', label: 'Projects built' },
-    { icon: <Code2 size={22} color="#3b82f6" />, to: 200, suffix: '+', label: 'DSA problems' },
+    { icon: <Code2 size={22} color="#3b82f6" />, to: 350, suffix: '+', label: 'DSA problems' },
     { icon: <BookOpen size={22} color="#8b5cf6" />, to: 15, suffix: '+', label: 'Technologies' },
     { icon: <GraduationCap size={22} color="#34d399" />, to: 7.6, decimals: 1, suffix: ' CGPA', label: 'B.Tech (6th Sem)' },
   ];

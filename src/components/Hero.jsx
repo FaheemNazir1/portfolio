@@ -38,7 +38,7 @@ const Hero = () => {
 
   const stats = [
     { to: 6, suffix: '', label: 'Projects built' },
-    { to: 200, suffix: '+', label: 'DSA problems solved' },
+    { to: 350, suffix: '+', label: 'DSA problems solved' },
     { to: 6, suffix: '', label: 'Live deployed apps' },
     { to: 15, suffix: '+', label: 'Technologies' },
   ];

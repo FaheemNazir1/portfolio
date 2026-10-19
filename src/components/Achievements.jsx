@@ -5,11 +5,11 @@ const Achievements = () => {
     {
       id: 1,
       category: 'Problem Solving & Algorithms',
-      title: '200+ DSA Problems Solved',
+      title: '350+ DSA Problems Solved',
       badge: 'Competitive Programming',
       icon: <Code2 size={24} color="#06B6D4" />,
       description:
-        'Solved over 200 Data Structures & Algorithms problems across platforms like LeetCode and GeeksforGeeks. Proficient in optimizing time and space complexities across Arrays, Strings, Trees, Graphs, and Dynamic Programming.',
+        'Solved over 350 Data Structures & Algorithms problems across platforms like LeetCode and GeeksforGeeks. Proficient in optimizing time and space complexities across Arrays, Strings, Trees, Graphs, and Dynamic Programming.',
       highlights: [
         'Time & Space Complexity Optimization',
         'Tree, Graph & Dynamic Programming Patterns',
