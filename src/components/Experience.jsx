@@ -1,11 +1,13 @@
-import { UserCheck, Zap, Trophy, Brain, Server } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronDown, UserCheck, Zap, Trophy, Brain, Server } from 'lucide-react';
 
 const Experience = () => {
+  const [openIdx, setOpenIdx] = useState(0);
   const milestones = [
     {
       icon: <Brain size={20} color="#06B6D4" />,
-      title: 'Applied AI & Biomedical Signal Processing',
-      desc: 'Engineered PhysioStress AI using multimodal physiological data (ECG, EDA, Respiration) from the WESAD dataset. Extracted 28 biomarkers, evaluated 4 ML models with 15-fold LOSO cross-validation, and developed an interactive Streamlit research dashboard.',
+      title: 'Applied AI & Machine Learning',
+      desc: 'Built ML-powered products: a fruit-quality classifier and price predictor in Farm2Market, content-based recommendations in CineSuggest, and Hugging Face NLP news verification in Cine News.',
     },
     {
       icon: <Server size={20} color="#A855F7" />,
@@ -55,7 +57,7 @@ const Experience = () => {
             <div className="fresher-goals-box">
               <h4>Primary Competency Areas:</h4>
               <ul className="goals-list">
-                <li>Applied Machine Learning & Signal Processing</li>
+                <li>Applied Machine Learning & NLP</li>
                 <li>Full-Stack Web Architecture (React, Node, Express, MongoDB)</li>
                 <li>Data Structures & Algorithms (200+ Problems)</li>
                 <li>Computer Vision & Feature Engineering</li>
@@ -69,10 +71,18 @@ const Experience = () => {
             <h3 className="milestones-title">Technical Milestones</h3>
             <div className="milestones-timeline">
               {milestones.map((milestone, idx) => (
-                <div key={idx} className="milestone-item">
+                <div
+                  key={idx}
+                  className={`milestone-item ${openIdx === idx ? 'open' : ''}`}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={openIdx === idx}
+                  onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), setOpenIdx(openIdx === idx ? -1 : idx))}
+                >
                   <div className="milestone-icon-wrapper">{milestone.icon}</div>
                   <div className="milestone-details">
-                    <h4>{milestone.title}</h4>
+                    <h4>{milestone.title} <ChevronDown size={16} className="chev" /></h4>
                     <p>{milestone.desc}</p>
                   </div>
                 </div>

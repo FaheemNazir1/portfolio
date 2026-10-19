@@ -17,14 +17,14 @@ This portfolio is configured for **Faheem Nazir**, an aspiring Computer Science 
 
 ## ✨ Features
 
-- **🌀 Interactive Canvas Particle Network:** A lightweight, vanilla HTML5 Canvas particle system that dynamically tracks mouse coordinates, connecting particles and generating reactive webs under the cursor.
-- **💎 Premium Glassmorphic UI:** Built using modern styling tokens, semi-transparent backdrops (`backdrop-filter`), glowing radial blobs, and smooth CSS transitions.
-- **✍️ Dynamic Typewriter Effect:** A smooth, interactive typewriter component in the Hero section displaying rotating professional roles.
-- **♾️ Infinite SVG Marquee:** A customized, infinite-scrolling logo showcase for core programming languages and technologies, complete with high-quality inline SVGs.
-- **📂 Filterable Projects Showcase:** Categorized grid view (All, AI & ML, Web Dev) showing custom visual cards, tech stack tags, source code access, and live preview integrations.
-- **⏳ Loading Screen:** A sleek logo loader showing `<FN/>` that mimics application initialization before fading out.
-- **✉️ Direct Mail via EmailJS:** Complete production-ready integration with the `@emailjs/browser` SDK. Includes a beautiful contact form with real-time status cues (Sending, Success, Error) and clipboard copy tools.
-- **📱 Fully Responsive Design:** Handcrafted layouts designed to scale beautifully from ultra-wide monitors down to standard smartphones.
+- **⌨️ Command Palette (Ctrl/⌘ + K):** Jump to any section, open a project's details, launch live demos, download the resume, or copy the email.
+- **🖱️ Cursor-reactive UI:** Spotlight glow that follows the mouse on every card, magnetic buttons, a trailing cursor ring, and a 3D tilt on the hero portrait and project cards.
+- **🗂️ Filterable Projects + Detail Modal:** Filter by AI/ML, Full-Stack or Frontend; click a card for a full write-up, key metrics, tech stack and links, with keyboard navigation between projects.
+- **📈 Scroll Progress Bar, Animated Counters & Reveal Animations.**
+- **🧠 Interactive Skills & Roadmap:** Category filter chips, a pausable tech marquee, and an expandable milestones accordion.
+- **🌀 Canvas Particle Network + Aurora Background.**
+- **✉️ Direct Mail via EmailJS:** Contact form with live status cues (falls back to Demo Mode without credentials).
+- **📱 Fully Responsive & `prefers-reduced-motion` aware.**
 
 ---
 
@@ -148,9 +148,11 @@ Portfolio/
 │   │   ├── Projects.jsx    # Projects filter-tabs & grid list
 │   │   ├── Services.jsx    # Service cards grid
 │   │   └── Skills.jsx      # Skills categories & scrolling marquee
-│   ├── App.css             # Main stylesheet (37 bytes)
+│   ├── data/projects.js    # Project data (cards, modal, command palette)
+│   ├── hooks/              # useScrollReveal, usePointerFx, useTilt
+│   ├── utils/scrollToId.js # Smooth-scroll helper
 │   ├── App.jsx             # Root layout controller & loading screen
-│   ├── index.css           # Global typography, color tokens, and layout styles
+│   ├── index.css           # Design tokens, layout and component styles
 │   └── main.jsx            # React root mount point
 ├── .env.example            # Environment variables sample configuration
 ├── vite.config.js          # Vite configuration settings
@@ -171,7 +173,7 @@ Want to adjust the template for yourself? Follow this breakdown of files contain
 | **Education** | [Education.jsx](file:///d:/Project/Portfolio/src/components/Education.jsx) | Edit the `educationList` array containing objects for B.Tech, Schooling, dates, institutions, locations, and key highlights. |
 | **Skills & Tech** | [Skills.jsx](file:///d:/Project/Portfolio/src/components/Skills.jsx) | Adjust `skillCategories` names/items, and edit the `marqueeSkills` array to add/remove your custom SVG technology badges. |
 | **Services Offered**| [Services.jsx](file:///d:/Project/Portfolio/src/components/Services.jsx)| Customize titles, descriptions, and Lucide icons in the `services` array. |
-| **Projects** | [Projects.jsx](file:///d:/Project/Portfolio/src/components/Projects.jsx) | Edit the `projects` array objects with titles, tech arrays, short descriptions, categories (`ai-ml`, `web-dev`), custom gradient colors, and repository/live URLs. |
+| **Projects** | [projects.js](src/data/projects.js) | Edit [src/data/projects.js](src/data/projects.js): titles, summaries, descriptions, highlights, tech arrays, categories (`ai`, `fullstack`, `frontend`), cover image in `public/`, and repository/live URLs. |
 | **Career Roadmap**| [Experience.jsx](file:///d:/Project/Portfolio/src/components/Experience.jsx)| Rewrite the milestones list (`milestones`), goals checklist, and summary highlights. |
 | **Contact Info** | [Contact.jsx](file:///d:/Project/Portfolio/src/components/Contact.jsx) | Update direct email addresses, phone coordinates, copy clipboard targets, and location names. |
 | **Footer** | [Footer.jsx](file:///d:/Project/Portfolio/src/components/Footer.jsx) | Update copyright notice text and quick links. |

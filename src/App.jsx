@@ -11,46 +11,59 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
+import ScrollProgress from './components/ScrollProgress';
+import CursorGlow from './components/CursorGlow';
+import CommandPalette from './components/CommandPalette';
 import { useScrollReveal } from './hooks/useScrollReveal';
+import { usePointerFx } from './hooks/usePointerFx';
 import './App.css';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [paletteOpen, setPaletteOpen] = useState(false);
 
-  // Initialize scroll-reveal when loading completes
   useScrollReveal(loading);
+  usePointerFx();
 
   useEffect(() => {
-    // Simulated loading animation
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Ctrl/Cmd + K opens the command palette
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPaletteOpen((o) => !o);
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
   }, []);
 
   return (
     <>
-      {/* Loading Screen Overlay */}
       <div className={`loading-screen ${!loading ? 'fade-out' : ''}`}>
         <div className="loader-box">
-          <div className="loader-spinner">
-            <div className="spinner-inner"></div>
-          </div>
-          <div className="loader-logo">
-            <span>&lt;</span>FN<span>/&gt;</span>
+          <div className="loader-ring">
+            <div className="loader-spinner"><div className="spinner-inner"></div></div>
+            <div className="loader-logo"><span>&lt;</span>FN<span>/&gt;</span></div>
           </div>
           <p className="loader-text">Initializing portfolio...</p>
         </div>
       </div>
 
-      {/* Main Website Structure */}
+      <ScrollProgress />
+      <CursorGlow />
+      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
+
       <div className="app-wrapper">
-        {/* Particle network under the cards */}
+        <div className="aurora-fixed" aria-hidden="true"></div>
+        <div className="grid-overlay" aria-hidden="true"></div>
         <ParticleBackground />
 
-        {/* Core Content Layer */}
-        <Navbar />
+        <Navbar onOpenPalette={() => setPaletteOpen(true)} />
         <main className="main-content-flow">
           <Hero />
           <About />

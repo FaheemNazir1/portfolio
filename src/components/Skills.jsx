@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Code2, Brain, Database, Wrench, Binary, LineChart, Globe } from 'lucide-react';
 
 const Skills = () => {
+  const [active, setActive] = useState('All');
   const skillCategories = [
     {
       title: 'Programming Languages',
@@ -41,7 +43,7 @@ const Skills = () => {
     {
       title: 'Web & Backend',
       icon: <Globe size={22} color="#10B981" />,
-      skills: ['React.js', 'Node.js', 'Express.js', 'REST APIs'],
+      skills: ['React.js', 'Node.js', 'Express.js', 'FastAPI', 'REST APIs', 'Firebase Auth', 'Tailwind CSS'],
     },
     {
       title: 'Databases',
@@ -74,8 +76,8 @@ const Skills = () => {
       color: '#3776AB',
       logo: (
         <svg viewBox="0 0 128 128" width="32" height="32">
-          <path fill="#3776AB" d="M63.5 12.8c-28 0-26.3 12.1-26.3 12.1l.1 12.5h26.7v3.8H26.3S12.8 39.6 12.8 67.8c0 28.2 11.9 27.2 11.9 27.2h7.1v-10s-.4-11.9 11.7-11.9h27.1s11.2-.2 11.2-10.9V23.7s1.7-10.9-24.3-10.9zm-14.7 8.3c2.4 0 4.4 2 4.4 4.4s-2 4.4-4.4 4.4-4.4-2-4.4-4.4 2-4.4 4.4-4.4z"/>
-          <path fill="#FFD43B" d="M64.5 115.2c28 0 26.3-12.1 26.3-12.1l-.1-12.5H64v-3.8h37.7s13.5 1.6 13.5-26.6c0-28.2-11.9-27.2-11.9-27.2h-7.1v10s.4 11.9-11.7 11.9H47.4s-11.2.2-11.2 10.9v38.5s-1.7 10.9 24.3 10.9zm14.7-8.3c-2.4 0-4.4-2-4.4-4.4s2-4.4 4.4-4.4 4.4 2 4.4 4.4-4.4 2-4.4 4.4-4.4z"/>
+          <path fill="#3776AB" d="M63.5 12.8c-28 0-26.3 12.1-26.3 12.1l.1 12.5h26.7v3.8H26.3S12.8 39.6 12.8 67.8c0 28.2 11.9 27.2 11.9 27.2h7.1v-10s-.4-11.9 11.7-11.9h27.1s11.2-.2 11.2-10.9V23.7s1.7-10.9-24.3-10.9zm-14.7 8.3a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8z"/>
+          <path fill="#FFD43B" d="M64.5 115.2c28 0 26.3-12.1 26.3-12.1l-.1-12.5H64v-3.8h37.7s13.5 1.6 13.5-26.6c0-28.2-11.9-27.2-11.9-27.2h-7.1v10s.4 11.9-11.7 11.9H47.4s-11.2.2-11.2 10.9v38.5s-1.7 10.9 24.3 10.9zm14.7-8.3a4.4 4.4 0 1 1 0-8.8 4.4 4.4 0 0 1 0 8.8z"/>
         </svg>
       ),
     },
@@ -197,12 +199,29 @@ const Skills = () => {
         <h2 className="section-title">Skills & Technologies</h2>
       </div>
 
+      <div className="filter-bar reveal-on-scroll delay-100" role="tablist" aria-label="Filter skills">
+        {['All', ...skillCategories.map((c) => c.title)].map((name) => (
+          <button
+            key={name}
+            role="tab"
+            aria-selected={active === name}
+            className={`filter-chip ${active === name ? 'active' : ''}`}
+            onClick={() => setActive(name)}
+          >
+            {name}
+          </button>
+        ))}
+      </div>
+
       {/* Categorized Skills Grid */}
-      <div className="skills-grid grid-3" style={{ marginBottom: '60px' }}>
-        {skillCategories.map((category, idx) => (
+      <div className="skills-grid grid-3" key={active}>
+        {skillCategories
+          .filter((c) => active === 'All' || c.title === active)
+          .map((category, idx) => (
           <div
-            key={idx}
-            className={`glass-card skill-category-card reveal-on-scroll delay-${((idx % 3) + 1) * 100}`}
+            key={category.title}
+            className="glass-card skill-category-card"
+            style={{ animationDelay: `${idx * 60}ms` }}
           >
             <div className="skill-category-header">
               <div className="skill-icon-box">{category.icon}</div>
